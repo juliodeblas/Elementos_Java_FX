@@ -72,10 +72,12 @@ public class ControladoraVentanaUno implements Initializable {
     }
 
     private void personalizarCombo() {
+        combo_box.setPromptText("Selecciona un valor del combo");
         ObservableList item_combo = FXCollections.observableArrayList();
         item_combo.addAll(1, 2, 3, 4);
         ObservableList item_choice = FXCollections.observableArrayList();
         item_choice.addAll(1, 2, 3, 4);
+        choice_box.setTooltip(new Tooltip("Selecciona un valor del choice"));
         combo_box.setItems(item_combo);
         choice_box.setItems(item_choice);
     }
