@@ -14,7 +14,7 @@ public class VentanaUno extends Stage {
     public VentanaUno() {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../layouts/layout_ventana_uno.fxml"));
+            root = FXMLLoader.load(getClass().getResource("..//layouts//layout_ventana_uno.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,6 +22,5 @@ public class VentanaUno extends Stage {
         this.setScene(scene);
         this.show();
     }
-
 
 }

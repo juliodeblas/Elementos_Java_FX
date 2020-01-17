@@ -3,6 +3,8 @@ package controladoras;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -54,12 +56,28 @@ public class ControladoraVentanaUno implements Initializable {
     @FXML
     Button boton_pantalla;
 
+    @FXML
+    ComboBox combo_box;
+
+    @FXML
+    ChoiceBox choice_box;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         text_area.setWrapText(true);
         instancias();
         personalizarBotones();
+        personalizarCombo();
         acciones();
+    }
+
+    private void personalizarCombo() {
+        ObservableList item_combo = FXCollections.observableArrayList();
+        item_combo.addAll(1, 2, 3, 4);
+        ObservableList item_choice = FXCollections.observableArrayList();
+        item_choice.addAll(1, 2, 3, 4);
+        combo_box.setItems(item_combo);
+        choice_box.setItems(item_choice);
     }
 
     private void instancias() {
