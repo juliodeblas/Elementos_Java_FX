@@ -115,14 +115,36 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="ComboBox" />
                         <Label text="ChoiceBox" GridPane.rowIndex="1" />
                         <ComboBox fx:id="combo_box" prefWidth="150.0" GridPane.columnIndex="1" />
                         <ChoiceBox fx:id="choice_box" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="ListView" GridPane.rowIndex="2" />
+                        <ListView fx:id="list_view" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </ListView>
+                        <Button fx:id="boton_seleccion" mnemonicParsing="false" text="Seleccion" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
+               </content>
+            </Tab>
+            <Tab text="Dialogos">
+               <content>
+                  <FlowPane alignment="CENTER" hgap="20.0" prefHeight="200.0" prefWidth="200.0" vgap="20.0">
+                     <children>
+                        <Button fx:id="boton_informacion" mnemonicParsing="false" text="Informacion" />
+                        <Button fx:id="boton_confirmacion" mnemonicParsing="false" text="Confirmacion" />
+                        <Button fx:id="boton_botones" mnemonicParsing="false" text="Botones" />
+                        <Button fx:id="boton_input" mnemonicParsing="false" text="Input" />
+                        <Button fx:id="boton_choice" mnemonicParsing="false" text="Choice" />
+                        <Button fx:id="boton_perso" mnemonicParsing="false" text="Perso" />
+                     </children>
+                  </FlowPane>
                </content>
             </Tab>
         </tabs>

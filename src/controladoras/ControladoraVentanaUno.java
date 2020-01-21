@@ -24,6 +24,7 @@ import ventanas.VentanaDos;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControladoraVentanaUno implements Initializable {
@@ -62,17 +63,38 @@ public class ControladoraVentanaUno implements Initializable {
     @FXML
     ChoiceBox choice_box;
 
+    @FXML
+    ListView list_view;
+
+    @FXML
+    Button boton_seleccion;
+
+    @FXML
+    Button boton_informacion, boton_confirmacion, boton_botones, boton_input, boton_choice, boton_perso;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         text_area.setWrapText(true);
         instancias();
         personalizarBotones();
         personalizarCombo();
+        personalizarLista();
         acciones();
+    }
+
+    private void personalizarLista() {
+        ObservableList lista_elementos = FXCollections.observableArrayList();
+        lista_elementos.addAll(new Persona("asd", "asd"),
+                new Persona("dsdfs", "gergerg"),
+                new Persona("dsdfs", "gergerg"),
+                new Persona("dsdfs", "gergerg"),
+                new Persona("dsdfs", "gergerg"));
+        list_view.setItems(lista_elementos);
     }
 
     private void personalizarCombo() {
         combo_box.setPromptText("Selecciona un valor del combo");
+        combo_box.setVisibleRowCount(3);
         ObservableList item_combo = FXCollections.observableArrayList();
         item_combo.addAll(1, 2, 3, 4);
         ObservableList item_choice = FXCollections.observableArrayList();
@@ -134,6 +156,26 @@ public class ControladoraVentanaUno implements Initializable {
                 System.out.println(seleccionado.getNombre());
             }
         });
+        boton_seleccion.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Persona p = (Persona) list_view.getSelectionModel().getSelectedItem();
+                System.out.println(p);
+            }
+        });
+        list_view.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                Persona p = (Persona) newValue;
+                System.out.println(p.getEstado());
+            }
+        });
+        boton_informacion.setOnAction(new ManejoPulsaciones());
+        boton_confirmacion.setOnAction(new ManejoPulsaciones());
+        boton_botones.setOnAction(new ManejoPulsaciones());
+        boton_input.setOnAction(new ManejoPulsaciones());
+        boton_choice.setOnAction(new ManejoPulsaciones());
+        boton_perso.setOnAction(new ManejoPulsaciones());
     }
 
     class ManejoRaton implements EventHandler<MouseEvent> {
@@ -153,6 +195,54 @@ public class ControladoraVentanaUno implements Initializable {
                     System.out.println("Hola");
                     btn_imagen.setEffect(null);
                 }
+            }
+        }
+    }
+
+    class ManejoPulsaciones implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            if (event.getSource() == boton_informacion) {
+                Alert alert_informacion = new Alert(Alert.AlertType.INFORMATION);
+                alert_informacion.setTitle("Titulo información");
+                alert_informacion.setHeaderText("Header informacion");
+                alert_informacion.setContentText("Contenido informacion");
+                alert_informacion.show();
+            } else if (event.getSource() == boton_confirmacion) {
+                Alert alert_confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+                alert_confirmacion.setTitle("Titulo confirmacion");
+                alert_confirmacion.setHeaderText("Header confirmacion");
+                alert_confirmacion.setContentText("Contenido confirmacion");
+                Optional<ButtonType> resultado = alert_confirmacion.showAndWait();
+
+                if (resultado.get() == ButtonType.OK) {
+                    System.out.println("OK");
+                } else if (resultado.get() == ButtonType.CANCEL) {
+                    System.out.println("CANCEL");
+                }
+            } else if (event.getSource() == boton_botones) {
+                ButtonType ejemplo = new ButtonType("ejemplo");
+                ButtonType ejemplo2 = new ButtonType("ejemplo 2");
+
+                Alert alert_botones = new Alert(Alert.AlertType.CONFIRMATION);
+                alert_botones.setTitle("Titulo confirmacion");
+                alert_botones.setHeaderText("Header confirmacion");
+                alert_botones.setContentText("Contenido confirmacion");
+                alert_botones.getButtonTypes().setAll(ejemplo, ejemplo2);
+                Optional<ButtonType> resultado = alert_botones.showAndWait();
+
+                if (resultado.get() == ejemplo) {
+                    System.out.println("ejemplo");
+                } else if (resultado.get() == ejemplo2) {
+                    System.out.println("ejemplo2");
+                }
+            } else if (event.getSource() == boton_input) {
+
+            } else if (event.getSource() == boton_choice) {
+
+            } else if (event.getSource() == boton_perso) {
+
             }
         }
     }
